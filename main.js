@@ -6,11 +6,28 @@ let taskInput = document.getElementById("task-input");
 let addButton = document.getElementById("add-button");
 addButton.addEventListener("click", addTask);
 
-// select one of 4 task-tabs, filtering
-let tabs = document.querySelectorAll(".task-tabs div");
-for(let i=1;i<tabs.length;i++){
-    tabs[i].addEventListener("click",function(event){filter(event)})
+
+// move underline 
+let underLine = document.getElementById("under-line");
+
+function moveUnderline(tabEl){
+  if(!underLine) return;
+  underLine.style.left = tabEl.offsetLeft + "px";
+  underLine.style.width = tabEl.offsetWidth + "px";
 }
+
+
+// select one of 4 task-tabs, filtering
+// which one clicked = event
+let tabs = document.querySelectorAll(".task-tabs div");
+
+for(let i=1;i<tabs.length;i++){
+    tabs[i].addEventListener("click",function(event){
+  moveUnderline(event.currentTarget);
+  filter(event);
+});
+}
+
 
 let mode = 'all';
 let taskList = [];
@@ -19,7 +36,7 @@ let filterList = [];
 function filter(event){
     // mode : all region ==> going up
     if(event){
-        mode = event.target.id;
+        mode = event.currentTarget.id;
     }
     
     filterList = [];
@@ -38,7 +55,7 @@ function filter(event){
             }
         }
         render();
-        console.log("ongoing",filterList);
+        // console.log("ongoing",filterList);
 
     }else if (mode==="done"){
         for(let i=0;i<taskList.length;i++){
