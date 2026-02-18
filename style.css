@@ -26,16 +26,25 @@ body{
 
 #under-line{
     height: 4px;
-    background-color: pink;
+    background-color: blue;
     position: absolute;
     width: 50px;
     left: 0px;
     top:52px;
     padding: 0px;
+    transition: all 0.5s ease;
 }
 
 .task{
     display: flex;
     justify-content: space-between;
     padding: 1em;
+}
+
+.task-done{
+    text-decoration: line-through;
+}
+
+.task-tabs div{
+    cursor: pointer;
 }
