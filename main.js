@@ -6,6 +6,13 @@ let taskInput = document.getElementById("task-input");
 let addButton = document.getElementById("add-button");
 addButton.addEventListener("click", addTask);
 
+// just enter
+taskInput.addEventListener("keydown", function(event){
+  if(event.key === "Enter"){
+    addTask();
+  }
+});
+
 
 // move underline 
 let underLine = document.getElementById("under-line");
@@ -71,6 +78,12 @@ function filter(event){
 
 
 function addTask() {
+        // no input
+      if (taskInput.value.trim() === "") {
+    alert("할 일을 입력해주삼");
+    taskInput.focus();
+    return;
+  }
     // console.log(clicked);
     // let taskContent = taskInput.value;
     let task = {
@@ -78,6 +91,7 @@ function addTask() {
         taskContent: taskInput.value,
         isComplete : false
     }
+
     taskList.push(task);
     console.log(taskList);
 
